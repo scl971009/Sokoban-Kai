@@ -1,0 +1,1579 @@
+class Level{
+	field int diff;
+
+	constructor Level new(int level){
+		let diff = level;
+		return this;
+	}
+
+	method void run1(){
+		var BigBox bigbox;
+		var SmallBox smallbox;
+		var char keyb;
+		var Dot dot;
+		var int goal;
+		var int quit;
+		let quit = 0;
+		let goal = 0;
+		while(keyb = 0){
+			let keyb = Keyboard.keyPressed();
+		}
+		do Screen.clearScreen();
+		//do Screen.drawLine(190, 75, 190, 175);
+		//do Screen.drawLine(340, 75, 340, 175);
+		//do Screen.drawLine(190, 75, 340, 75);
+		//do Screen.drawLine(190, 175, 340, 175);
+		//do Output.printInt(keyb);
+		while (~(keyb = 0)) {
+			do Output.moveCursor(0, 0);
+			do Output.printString("R:RESTART");
+			do Output.moveCursor(1, 0);
+			do Output.printString("Q:QUIT");
+			do Screen.drawLine(190, 75, 190, 175);
+			do Screen.drawLine(188, 73, 188, 177);
+			do Screen.drawLine(340, 75, 340, 175);
+			do Screen.drawLine(342, 73, 342, 177);
+			do Screen.drawLine(190, 75, 340, 75);
+			do Screen.drawLine(188, 73, 342, 73);
+			do Screen.drawLine(190, 175, 340, 175);
+			do Screen.drawLine(188, 177, 342, 177);
+			let keyb = Keyboard.keyPressed();
+		}
+		let bigbox = BigBox.new(315, 100, 4);
+		let smallbox = SmallBox.new(265, 150, 4);
+		let dot = Dot.new(215, 100);
+
+		while((goal = 0) & (quit = 0)){
+			while(keyb = 0){
+				let keyb = Keyboard.keyPressed();
+				//do Output.printInt(keyb);
+			}
+			if(keyb = 82){
+				do bigbox.dispose();
+				do smallbox.dispose();
+				do dot.dispose();
+				let bigbox = BigBox.new(315, 100, 4);
+				let smallbox = SmallBox.new(265, 150, 4);
+				let dot = Dot.new(215, 100);
+			}
+			if(keyb = 131){
+				if(dot.gety() > 100){
+					//do Output.printString("down");
+					if((~((dot.getx() = smallbox.getx()) & (dot.gety() - 50 = smallbox.gety()))|(smallbox.getface() = 3))&
+					(~((dot.getx() = bigbox.getx()) & (dot.gety() - 50 = bigbox.gety()))|(bigbox.getface() = 3))){
+						if(dot.getx() = smallbox.getx()){
+							if(dot.gety() = smallbox.gety()){
+								if(~(smallbox.getface() = 1)){
+									do smallbox.moveup();
+								}
+							}
+						}
+						if(dot.getx() = bigbox.getx()){
+							if(dot.gety() = bigbox.gety()){
+								if(~(bigbox.getface() = 1)){
+									do bigbox.moveup();
+								}
+							}
+						}
+						do dot.moveup();
+					}
+				}
+			}
+			if(keyb = 130){
+				if(dot.getx() > 215){
+					if((~((dot.getx() - 50 = smallbox.getx()) & (dot.gety() = smallbox.gety()))|(smallbox.getface() = 2))&
+					(~((dot.getx() - 50 = bigbox.getx()) & (dot.gety() = bigbox.gety()))|(bigbox.getface() = 2))){
+						if(dot.getx() = smallbox.getx()){
+							if(dot.gety() = smallbox.gety()){
+								if(~(smallbox.getface() = 4)){
+									do smallbox.moveleft();
+								}
+							}
+						}
+						if(dot.getx() = bigbox.getx()){
+							if(dot.gety() = bigbox.gety()){
+								if(~(bigbox.getface() = 4)){
+									do bigbox.moveleft();
+								}
+							}
+						}
+						do dot.moveleft();
+					}
+				}
+			}
+			if(keyb = 133){
+				if(dot.gety() < 150){
+					//do Output.printString("down");
+					if((~((dot.getx() = smallbox.getx()) & (dot.gety() + 50 = smallbox.gety()))|(smallbox.getface() = 1))&
+					(~((dot.getx() = bigbox.getx()) & (dot.gety() + 50 = bigbox.gety()))|(bigbox.getface() = 1))){
+						if(dot.getx() = smallbox.getx()){
+							if(dot.gety() = smallbox.gety()){
+								if(~(smallbox.getface() = 3)){
+									do smallbox.movedown();
+								}
+							}
+						}
+						if(dot.getx() = bigbox.getx()){
+							if(dot.gety() = bigbox.gety()){
+								if(~(bigbox.getface() = 3)){
+									do bigbox.movedown();
+								}
+							}
+						}
+						do dot.movedown();
+					}
+				}
+			}
+			if(keyb = 132){
+				if(dot.getx() < 315){
+					if((~((dot.getx() + 50 = smallbox.getx()) & (dot.gety() = smallbox.gety()))|(smallbox.getface() = 4))&
+					(~((dot.getx() + 50 = bigbox.getx()) & (dot.gety() = bigbox.gety()))|(bigbox.getface() = 4))){
+						if(dot.getx() = smallbox.getx()){
+							if(dot.gety() = smallbox.gety()){
+								if(~(smallbox.getface() = 2)){
+									do smallbox.moveright();
+								}
+							}
+						}
+						if(dot.getx() = bigbox.getx()){
+							if(dot.gety() = bigbox.gety()){
+								if(~(bigbox.getface() = 2)){
+									do bigbox.moveright();
+								}
+							}
+						}
+						do dot.moveright();
+					}
+				}
+			}
+			if(keyb = 81){
+				let quit = 1;
+			}
+			while(~(keyb = 0)){
+				let keyb = Keyboard.keyPressed();
+			}
+			//complete
+			if(bigbox.getx() = smallbox.getx()){
+				if(bigbox.gety() = smallbox.gety()){
+					let goal = 1;
+					do Output.printInt(goal);
+				}
+			}
+		}
+		do Screen.clearScreen();
+		do Output.moveCursor(11, 27);
+		if(goal = 1){
+			do Output.printString("Complete!");
+		}
+		if(quit = 1){
+			do Output.printString("Failed QQ");
+		}
+		do bigbox.dispose();
+		do smallbox.dispose();
+		do dot.dispose();
+		return;
+	}
+
+	method void run2(){
+		var BigBox bigbox;
+		var SmallBox smallbox;
+		var NormalBigBox normalbigbox;
+		var char keyb;
+		var Dot dot;
+		var int goal;
+		var int quit;
+		var int move;
+		let quit = 0;
+		let move = 0;
+		let goal = 0;
+		while(keyb = 0){
+			let keyb = Keyboard.keyPressed();
+		}
+		do Screen.clearScreen();
+		while (~(keyb = 0)) {
+			do Output.moveCursor(0, 0);
+			do Output.printString("R:RESTART");
+			do Output.moveCursor(1, 0);
+			do Output.printString("Q:QUIT");
+			do Screen.drawLine(190, 50, 190, 200);
+			do Screen.drawLine(188, 48, 188, 202);
+			do Screen.drawLine(340, 50, 340, 200);
+			do Screen.drawLine(342, 48, 342, 202);
+			do Screen.drawLine(190, 50, 340, 50);
+			do Screen.drawLine(188, 48, 342, 48);
+			do Screen.drawLine(190, 200, 340, 200);
+			do Screen.drawLine(188, 202, 342, 202);
+			let keyb = Keyboard.keyPressed();
+		}
+		let bigbox = BigBox.new(265, 125, 1);
+		let smallbox = SmallBox.new(215, 175, 1);
+		let normalbigbox = NormalBigBox.new(315, 75, 4);
+		let dot = Dot.new(215, 75);
+
+		while((goal = 0) & (quit = 0)){
+			let move = 0;
+			while(keyb = 0){
+				let keyb = Keyboard.keyPressed();
+				//do Output.printInt(keyb);
+			}
+			if(keyb = 82){
+				do bigbox.dispose();
+				do smallbox.dispose();
+				do normalbigbox.dispose();
+				do dot.dispose();
+				let bigbox = BigBox.new(265, 125, 1);
+				let smallbox = SmallBox.new(215, 175, 1);
+				let normalbigbox = NormalBigBox.new(315, 75, 4);
+				let dot = Dot.new(215, 75);
+			}
+			if(keyb = 131){
+				if(dot.gety() > 75){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox.getx()) & (dot.gety() = normalbigbox.gety())){
+							if(~(normalbigbox.getface() = 1)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())){
+									do dot.moveup();
+									do smallbox.moveup();
+									do normalbigbox.moveup();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 1)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3)) & ~(dot.getx() = normalbigbox.getx() & dot.gety() - 50 = normalbigbox.gety() & ~(normalbigbox.getface() = 3))){
+									do smallbox.moveup();
+									do dot.moveup();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = normalbigbox.getx() & dot.gety() - 50 = normalbigbox.gety())){
+								do bigbox.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())){
+								do normalbigbox.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety() & ~(smallbox.getface() = 3)) & ~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3)) & ~(dot.getx() = normalbigbox.getx() & dot.gety() - 50 = normalbigbox.gety() & ~(normalbigbox.getface() = 3))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 1)) &
+								~(dot.getx() = normalbigbox.getx() & dot.gety() = normalbigbox.gety()) & ~(normalbigbox.getface() = 1)){
+									do dot.moveup();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 130){
+				if(dot.getx() > 215){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox.getx()) & (dot.gety() = normalbigbox.gety())){
+							if(~(normalbigbox.getface() = 4)){
+								if(~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety())){
+									do dot.moveleft();
+									do smallbox.moveleft();
+									do normalbigbox.moveleft();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 4)){
+								if(~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) & ~(dot.getx() - 50 = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 2))){
+									do smallbox.moveleft();
+									do dot.moveleft();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = normalbigbox.getx() & dot.gety() = normalbigbox.gety())){
+								do bigbox.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety())){
+								do normalbigbox.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 2)) & ~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) & ~(dot.getx() - 50 = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 2))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) &
+								~(dot.getx() = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 4))){
+									do dot.moveleft();
+									let move = 1;
+								}
+							}
+						}
+					}
+
+				}
+			}
+			if(keyb = 133){
+				if(dot.gety() < 175){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox.getx()) & (dot.gety() = normalbigbox.gety())){
+							if(~(normalbigbox.getface() = 3)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety())){
+									do dot.movedown();
+									do smallbox.movedown();
+									do normalbigbox.movedown();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 3)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1)) & ~(dot.getx() = normalbigbox.getx() & dot.gety() + 50 = normalbigbox.gety() & ~(normalbigbox.getface() = 1))){
+									do smallbox.movedown();
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = normalbigbox.getx() & dot.gety() + 50 = normalbigbox.gety())){
+								do bigbox.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety())){
+								do normalbigbox.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety() & ~(smallbox.getface() = 1)) & ~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1)) & ~(dot.getx() = normalbigbox.getx() & dot.gety() + 50 = normalbigbox.gety() & ~(normalbigbox.getface() = 1))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 3)) &
+								~(dot.getx() = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 3))){
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 132){
+				if(dot.getx() < 315){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox.getx()) & (dot.gety() = normalbigbox.gety())){
+							if(~(normalbigbox.getface() = 2)){
+								if(~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety())){
+									do dot.moveright();
+									do smallbox.moveright();
+									do normalbigbox.moveright();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 2)){
+								if(~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) & ~(dot.getx() + 50 = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 4))){
+									do smallbox.moveright();
+									do dot.moveright();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = normalbigbox.getx() & dot.gety() = normalbigbox.gety())){
+								do bigbox.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety())){
+								do normalbigbox.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 4)) & ~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) & ~(dot.getx() + 50 = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 4))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) &
+								~(dot.getx() = normalbigbox.getx() & dot.gety() = normalbigbox.gety() & ~(normalbigbox.getface() = 2))){
+									do dot.moveright();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 81){
+				let quit = 1;
+			}
+			while(~(keyb = 0)){
+				let keyb = Keyboard.keyPressed();
+			}
+			//complete
+			if(bigbox.getx() = smallbox.getx()){
+				if(bigbox.gety() = smallbox.gety()){
+					let goal = 1;
+					do Output.printInt(goal);
+				}
+			}
+		}
+		do Screen.clearScreen();
+		do Output.moveCursor(11, 27);
+		if(goal = 1){
+			do Output.printString("Complete!");
+		}
+		if(quit = 1){
+			do Output.printString("Failed QQ");
+		}
+		do bigbox.dispose();
+		do smallbox.dispose();
+		do normalbigbox.dispose();
+		do dot.dispose();
+		return;
+	}
+
+	method void run3(){
+		var BigBox bigbox;
+		var SmallBox smallbox;
+		var NormalBigBox normalbigbox1;
+		var NormalBigBox normalbigbox2;
+		var char keyb;
+		var Dot dot;
+		var int goal;
+		var int quit;
+		var int move;
+		let quit = 0;
+		let move = 0;
+		let goal = 0;
+		while(keyb = 0){
+			let keyb = Keyboard.keyPressed();
+		}
+		do Screen.clearScreen();
+		while (~(keyb = 0)) {
+			do Output.moveCursor(0, 0);
+			do Output.printString("R:RESTART");
+			do Output.moveCursor(1, 0);
+			do Output.printString("Q:QUIT");
+			do Screen.drawLine(190, 50, 190, 200);
+			do Screen.drawLine(188, 48, 188, 202);
+			do Screen.drawLine(340, 50, 340, 200);
+			do Screen.drawLine(342, 48, 342, 202);
+			do Screen.drawLine(190, 50, 340, 50);
+			do Screen.drawLine(188, 48, 342, 48);
+			do Screen.drawLine(190, 200, 340, 200);
+			do Screen.drawLine(188, 202, 342, 202);
+			let keyb = Keyboard.keyPressed();
+		}
+		let bigbox = BigBox.new(315, 125, 3);
+		let smallbox = SmallBox.new(215, 125, 2);
+		let normalbigbox1 = NormalBigBox.new(265, 75, 3);
+		let normalbigbox2 = NormalBigBox.new(265, 175, 1);
+		let dot = Dot.new(265, 125);
+
+		while((goal = 0) & (quit = 0)){
+			let move = 0;
+			while(keyb = 0){
+				let keyb = Keyboard.keyPressed();
+				//do Output.printInt(keyb);
+			}
+			if(keyb = 82){
+				do bigbox.dispose();
+				do smallbox.dispose();
+				do normalbigbox1.dispose();
+				do normalbigbox2.dispose();
+				do dot.dispose();
+				let bigbox = BigBox.new(315, 125, 3);
+				let smallbox = SmallBox.new(215, 125, 2);
+				let normalbigbox1 = NormalBigBox.new(265, 75, 3);
+				let normalbigbox2 = NormalBigBox.new(265, 175, 1);
+				let dot = Dot.new(265, 125);
+			}
+			if(keyb = 131){
+				if(dot.gety() > 75){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox1.getx()) & (dot.gety() = normalbigbox1.gety())){
+							if(~(normalbigbox1.getface() = 1)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())&
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety())){
+									do dot.moveup();
+									do smallbox.moveup();
+									do normalbigbox1.moveup();
+									let move = 1;
+								}
+							}
+						}
+						if((dot.getx() = normalbigbox2.getx()) & (dot.gety() = normalbigbox2.gety())){
+							if(~(normalbigbox2.getface() = 1)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())&
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety())){
+									do dot.moveup();
+									do smallbox.moveup();
+									do normalbigbox2.moveup();										
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 1)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3)) & 
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety() & ~(normalbigbox1.getface() = 3)) & 
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety())){
+									do smallbox.moveup();
+									do dot.moveup();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety())&
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety())){
+								do bigbox.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())&
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety())){
+								do normalbigbox1.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())&
+							~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety())){
+								do normalbigbox2.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety() & ~(smallbox.getface() = 3)) & 
+							~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3)) & ~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety() & ~(normalbigbox1.getface() = 3)) &
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety() & ~(normalbigbox2.getface() = 3))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 1)) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 1))&
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 1))){
+									do dot.moveup();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 130){
+				if(dot.getx() > 215){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox1.getx()) & (dot.gety() = normalbigbox1.gety())){
+							if(~(normalbigbox1.getface() = 4)){
+								if(~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+								~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+									do dot.moveleft();
+									do smallbox.moveleft();
+									do normalbigbox1.moveleft();
+									let move = 1;
+								}
+							}
+						}
+						if((dot.getx() = normalbigbox2.getx()) & (dot.gety() = normalbigbox2.gety())){
+							if(~(normalbigbox2.getface() = 4)){
+								if(~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+								~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())){
+									do dot.moveleft();
+									do smallbox.moveleft();
+									do normalbigbox2.moveleft();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 4)){
+								if(~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) & 
+								~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 2)) &
+								~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 2))){
+									do smallbox.moveleft();
+									do dot.moveleft();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())&
+							~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+								do bigbox.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+							~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+								do normalbigbox1.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+							~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())){
+								do normalbigbox2.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 2)) & 
+							~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) & ~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 2)) &
+							~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 2))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 4)) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 4))){
+									do dot.moveleft();
+									let move = 1;
+								}
+							}
+						}
+					}
+
+				}
+			}
+			if(keyb = 133){
+				if(dot.gety() < 175){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox1.getx()) & (dot.gety() = normalbigbox1.gety())){
+							if(~(normalbigbox1.getface() = 3)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety()) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety())){
+									do dot.movedown();
+									do smallbox.movedown();
+									do normalbigbox1.movedown();
+									let move = 1;
+								}
+							}
+						}
+						if((dot.getx() = normalbigbox2.getx()) & (dot.gety() = normalbigbox2.gety())){
+							if(~(normalbigbox2.getface() = 3)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety()) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety())){
+									do dot.movedown();
+									do smallbox.movedown();
+									do normalbigbox2.movedown();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 3)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1)) & 
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety() & ~(normalbigbox1.getface() = 1)) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety() & ~(normalbigbox2.getface() = 1))){
+									do smallbox.movedown();
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety()) &
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety())){
+								do bigbox.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety()) &
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety())){
+								do normalbigbox1.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety()) &
+							~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety())){
+								do normalbigbox2.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety() & ~(smallbox.getface() = 1)) & 
+							~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1)) & ~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety() & ~(normalbigbox1.getface() = 1)) & 
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety() & ~(normalbigbox2.getface() = 1))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 3)) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 3)) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 3))){
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 132){
+				if(dot.getx() < 315){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox1.getx()) & (dot.gety() = normalbigbox1.gety())){
+							if(~(normalbigbox1.getface() = 2)){
+								if(~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety()) & 
+								~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+									do dot.moveright();
+									do smallbox.moveright();
+									do normalbigbox1.moveright();
+									let move = 1;
+								}
+							}
+						}
+						if((dot.getx() = normalbigbox2.getx()) & (dot.gety() = normalbigbox2.gety())){
+							if(~(normalbigbox2.getface() = 2)){
+								if(~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety()) & 
+								~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())){
+									do dot.moveright();
+									do smallbox.moveright();
+									do normalbigbox2.moveright();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 2)){
+								if(~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) & 
+								~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 4)) &
+								~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 4))){
+									do smallbox.moveright();
+									do dot.moveright();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety()) &
+							~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+								do bigbox.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+							~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+								do normalbigbox1.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+							~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())){
+								do normalbigbox2.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 4)) & 
+							~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) & ~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 4)) &
+							~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 4))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 2)) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 2))){
+									do dot.moveright();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 81){
+				let quit = 1;
+			}
+			while(~(keyb = 0)){
+				let keyb = Keyboard.keyPressed();
+			}
+			//complete
+			if(bigbox.getx() = smallbox.getx()){
+				if(bigbox.gety() = smallbox.gety()){
+					let goal = 1;
+					do Output.printInt(goal);
+				}
+			}
+		}
+		do Screen.clearScreen();
+		do Output.moveCursor(11, 27);
+		if(goal = 1){
+			do Output.printString("Complete!");
+		}
+		if(quit = 1){
+			do Output.printString("Failed QQ");
+		}
+		do bigbox.dispose();
+		do smallbox.dispose();
+		do normalbigbox1.dispose();
+		do normalbigbox2.dispose();
+		do dot.dispose();
+		return;
+	}
+
+	method void run4(){
+		var BigBox bigbox;
+		var SmallBox smallbox;
+		var NormalSmallBox normalsmallbox;
+		var char keyb;
+		var Dot dot;
+		var int goal;
+		var int quit;
+		var int move;
+		let quit = 0;
+		let move = 0;
+		let goal = 0;
+		while(keyb = 0){
+			let keyb = Keyboard.keyPressed();
+		}
+		do Screen.clearScreen();
+		while (~(keyb = 0)) {
+			do Output.moveCursor(0, 0);
+			do Output.printString("R:RESTART");
+			do Output.moveCursor(1, 0);
+			do Output.printString("Q:QUIT");
+			do Screen.drawLine(165, 75, 165, 175);
+			do Screen.drawLine(163, 73, 163, 177);
+			do Screen.drawLine(365, 75, 365, 175);
+			do Screen.drawLine(367, 73, 367, 177);
+			do Screen.drawLine(165, 75, 365, 75);
+			do Screen.drawLine(163, 73, 367, 73);
+			do Screen.drawLine(165, 175, 365, 175);
+			do Screen.drawLine(163, 177, 367, 177);
+			let keyb = Keyboard.keyPressed();
+		}
+		let bigbox = BigBox.new(290, 100, 2);
+		let smallbox = SmallBox.new(290, 150, 1);
+		let normalsmallbox = NormalSmallBox.new(240, 150, 1);
+		let dot = Dot.new(340, 150);
+
+		while((goal = 0) & (quit = 0)){
+			let move = 0;
+			while(keyb = 0){
+				let keyb = Keyboard.keyPressed();
+				//do Output.printInt(keyb);
+			}
+			if(keyb = 82){
+				do bigbox.dispose();
+				do smallbox.dispose();
+				do normalsmallbox.dispose();
+				do dot.dispose();
+				let bigbox = BigBox.new(290, 100, 2);
+				let smallbox = SmallBox.new(290, 150, 1);
+				let normalsmallbox = NormalSmallBox.new(240, 150, 1);
+				let dot = Dot.new(340, 150);
+			}
+			if(keyb = 131){
+				if(dot.gety() > 100){
+					if(dot.getx() = normalsmallbox.getx() & dot.gety() = normalsmallbox.gety()){
+						if((dot.getx() = bigbox.getx()) & (dot.gety() = bigbox.gety())){
+							if(~(bigbox.getface() = 1)){
+								if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())){
+									do dot.moveup();
+									do normalsmallbox.moveup();
+									do bigbox.moveup();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(normalsmallbox.getface() = 1)){
+								if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety()) & 
+								~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3))){
+									do normalsmallbox.moveup();
+									do dot.moveup();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(dot.getx() = smallbox.getx() & dot.gety() = smallbox.gety()){
+						if(~(smallbox.getface() = 1)){
+							if(~(dot.getx() = normalsmallbox.getx() & dot.gety() - 50 = normalsmallbox.gety()) & 
+							~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3))){
+								do smallbox.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = normalsmallbox.getx() & dot.gety() - 50 = normalsmallbox.gety())){
+								do bigbox.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety() & ~(smallbox.getface() = 3)) & ~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3)) & ~(dot.getx() = normalsmallbox.getx() & dot.gety() - 50 = normalsmallbox.gety() & ~(normalsmallbox.getface() = 3))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 1))){
+									do dot.moveup();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 130){
+				if(dot.getx() > 190){
+					if((dot.getx() = normalsmallbox.getx()) & (dot.gety() = normalsmallbox.gety())){
+						if((dot.getx() = bigbox.getx()) & (dot.gety() = bigbox.gety())){
+							if(~(bigbox.getface() = 4)){
+								if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())){
+									do dot.moveleft();
+									do normalsmallbox.moveleft();
+									do bigbox.moveleft();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(normalsmallbox.getface() = 4)){
+								if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety()) & 
+								~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2))){
+									do normalsmallbox.moveleft();
+									do dot.moveleft();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(dot.getx() = smallbox.getx() & dot.gety() = smallbox.gety()){
+						if(~(smallbox.getface() = 4)){
+							if(~(dot.getx() - 50 = normalsmallbox.getx() & dot.gety() = normalsmallbox.gety()) & 
+							~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2))){
+								do smallbox.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = normalsmallbox.getx() & dot.gety() = normalsmallbox.gety())){
+								do bigbox.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 2)) & ~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) & ~(dot.getx() - 50 = normalsmallbox.getx() & dot.gety() = normalsmallbox.gety() & ~(normalsmallbox.getface() = 2))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4))){
+									do dot.moveleft();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 133){
+				if(dot.gety() < 150){
+					if((dot.getx() = normalsmallbox.getx()) & (dot.gety() = normalsmallbox.gety())){
+						if((dot.getx() = bigbox.getx()) & (dot.gety() = bigbox.gety())){
+							if(~(bigbox.getface() = 3)){
+								if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())){
+									do dot.movedown();
+									do normalsmallbox.movedown();
+									do bigbox.movedown();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(normalsmallbox.getface() = 3)){
+								if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety()) & ~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1))){
+									do normalsmallbox.movedown();
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(dot.getx() = smallbox.getx() & dot.gety() = smallbox.gety()){
+						if(~(smallbox.getface() = 3)){
+								if(~(dot.getx() = normalsmallbox.getx() & dot.gety() + 50 = normalsmallbox.gety()) & ~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1))){
+									do smallbox.movedown();
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = normalsmallbox.getx() & dot.gety() + 50 = normalsmallbox.gety())){
+								do bigbox.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety() & ~(smallbox.getface() = 1)) & ~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1)) & ~(dot.getx() = normalsmallbox.getx() & dot.gety() + 50 = normalsmallbox.gety() & ~(normalsmallbox.getface() = 1))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 3)) & ~(dot.getx() = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 3)) &
+								~(dot.getx() = normalsmallbox.getx() & dot.gety() = normalsmallbox.gety() & ~(smallbox.getface() = 3))){
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 132){
+				if(dot.getx() < 340){
+					if((dot.getx() = normalsmallbox.getx()) & (dot.gety() = normalsmallbox.gety())){
+						if((dot.getx() = bigbox.getx()) & (dot.gety() = bigbox.gety())){
+							if(~(bigbox.getface() = 2)){
+								if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())){
+									do dot.moveright();
+									do normalsmallbox.moveright();
+									do bigbox.moveright();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(normalsmallbox.getface() = 2)){
+								if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety()) & ~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4))){
+									do normalsmallbox.moveright();
+									do dot.moveright();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(dot.getx() = smallbox.getx() & dot.gety() = smallbox.gety()){
+						if(~(smallbox.getface() = 2)){
+							if(~(dot.getx() + 50 = normalsmallbox.getx() & dot.gety() = normalsmallbox.gety()) & ~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4))){
+								do smallbox.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = normalsmallbox.getx() & dot.gety() = normalsmallbox.gety())){
+								do bigbox.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 4)) & ~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) & ~(dot.getx() + 50 = normalsmallbox.getx() & dot.gety() = normalsmallbox.gety() & ~(normalsmallbox.getface() = 4))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2))){
+									do dot.moveright();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 81){
+				let quit = 1;
+			}
+			while(~(keyb = 0)){
+				let keyb = Keyboard.keyPressed();
+			}
+			//complete
+			if(bigbox.getx() = smallbox.getx()){
+				if(bigbox.gety() = smallbox.gety()){
+					let goal = 1;
+					do Output.printInt(goal);
+				}
+			}
+		}
+		do Screen.clearScreen();
+		do Output.moveCursor(11, 27);
+		if(goal = 1){
+			do Output.printString("Complete!");
+		}
+		if(quit = 1){
+			do Output.printString("Failed QQ");
+		}
+		do bigbox.dispose();
+		do smallbox.dispose();
+		do normalsmallbox.dispose();
+		do dot.dispose();
+		return;
+	}
+
+	method void run5(){
+		var BigBox bigbox;
+		var SmallBox smallbox;
+		var NormalBigBox normalbigbox1;
+		var NormalBigBox normalbigbox2;
+		var char keyb;
+		var Dot dot;
+		var int goal;
+		var int quit;
+		var int move;
+		let quit = 0;
+		let move = 0;
+		let goal = 0;
+		while(keyb = 0){
+			let keyb = Keyboard.keyPressed();
+		}
+		do Screen.clearScreen();
+		while (~(keyb = 0)) {
+			do Output.moveCursor(0, 0);
+			do Output.printString("R:RESTART");
+			do Output.moveCursor(1, 0);
+			do Output.printString("Q:QUIT");
+			do Screen.drawLine(140, 75, 140, 175);
+			do Screen.drawLine(138, 73, 138, 177);
+			do Screen.drawLine(390, 75, 390, 175);
+			do Screen.drawLine(392, 73, 392, 177);
+			do Screen.drawLine(140, 75, 390, 75);
+			do Screen.drawLine(138, 73, 392, 73);
+			do Screen.drawLine(140, 175, 390, 175);
+			do Screen.drawLine(138, 177, 392, 177);
+			let keyb = Keyboard.keyPressed();
+		}
+		let bigbox = BigBox.new(215, 150, 1);
+		let smallbox = SmallBox.new(365, 150, 1);
+		let normalbigbox1 = NormalBigBox.new(265, 150, 4);
+		let normalbigbox2 = NormalBigBox.new(315, 100, 3);
+		let dot = Dot.new(315, 150);
+
+		while((goal = 0) & (quit = 0)){
+			let move = 0;
+			while(keyb = 0){
+				let keyb = Keyboard.keyPressed();
+				//do Output.printInt(keyb);
+			}
+			if(keyb = 82){
+				do bigbox.dispose();
+				do smallbox.dispose();
+				do normalbigbox1.dispose();
+				do normalbigbox2.dispose();
+				do dot.dispose();
+				let bigbox = BigBox.new(215, 150, 1);
+				let smallbox = SmallBox.new(365, 150, 1);
+				let normalbigbox1 = NormalBigBox.new(265, 150, 4);
+				let normalbigbox2 = NormalBigBox.new(315, 100, 3);
+				let dot = Dot.new(315, 150);
+			}
+			if(keyb = 131){
+				if(dot.gety() > 100){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox1.getx()) & (dot.gety() = normalbigbox1.gety())){
+							if(~(normalbigbox1.getface() = 1)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())&
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety())){
+									do dot.moveup();
+									do smallbox.moveup();
+									do normalbigbox1.moveup();
+									let move = 1;
+								}
+							}
+						}
+						if((dot.getx() = normalbigbox2.getx()) & (dot.gety() = normalbigbox2.gety())){
+							if(~(normalbigbox2.getface() = 1)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())&
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety())){
+									do dot.moveup();
+									do smallbox.moveup();
+									do normalbigbox2.moveup();										
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 1)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3)) & 
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety() & ~(normalbigbox1.getface() = 3)) & 
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety())){
+									do smallbox.moveup();
+									do dot.moveup();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety())&
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety())){
+								do bigbox.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())&
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety())){
+								do normalbigbox1.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 1)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety())&
+							~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety())){
+								do normalbigbox2.moveup();
+								do dot.moveup();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() - 50 = smallbox.gety() & ~(smallbox.getface() = 3)) & 
+							~(dot.getx() = bigbox.getx() & dot.gety() - 50 = bigbox.gety() & ~(bigbox.getface() = 3)) & ~(dot.getx() = normalbigbox1.getx() & dot.gety() - 50 = normalbigbox1.gety() & ~(normalbigbox1.getface() = 3)) &
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() - 50 = normalbigbox2.gety() & ~(normalbigbox2.getface() = 3))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 1)) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 1))&
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 1))){
+									do dot.moveup();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 130){
+				if(dot.getx() > 165){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox1.getx()) & (dot.gety() = normalbigbox1.gety())){
+							if(~(normalbigbox1.getface() = 4)){
+								if(~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+								~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+									do dot.moveleft();
+									do smallbox.moveleft();
+									do normalbigbox1.moveleft();
+									let move = 1;
+								}
+							}
+						}
+						if((dot.getx() = normalbigbox2.getx()) & (dot.gety() = normalbigbox2.gety())){
+							if(~(normalbigbox2.getface() = 4)){
+								if(~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+								~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())){
+									do dot.moveleft();
+									do smallbox.moveleft();
+									do normalbigbox2.moveleft();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 4)){
+								if(~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) & 
+								~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 2)) &
+								~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 2))){
+									do smallbox.moveleft();
+									do dot.moveleft();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())&
+							~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+								do bigbox.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+							~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+								do normalbigbox1.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 4)){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+							~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())){
+								do normalbigbox2.moveleft();
+								do dot.moveleft();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() - 50 = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 2)) & 
+							~(dot.getx() - 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) & ~(dot.getx() - 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 2)) &
+							~(dot.getx() - 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 2))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 4)) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 4))){
+									do dot.moveleft();
+									let move = 1;
+								}
+							}
+						}
+					}
+
+				}
+			}
+			if(keyb = 133){
+				if(dot.gety() < 150){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox1.getx()) & (dot.gety() = normalbigbox1.gety())){
+							if(~(normalbigbox1.getface() = 3)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety()) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety())){
+									do dot.movedown();
+									do smallbox.movedown();
+									do normalbigbox1.movedown();
+									let move = 1;
+								}
+							}
+						}
+						if((dot.getx() = normalbigbox2.getx()) & (dot.gety() = normalbigbox2.gety())){
+							if(~(normalbigbox2.getface() = 3)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety()) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety())){
+									do dot.movedown();
+									do smallbox.movedown();
+									do normalbigbox2.movedown();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 3)){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1)) & 
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety() & ~(normalbigbox1.getface() = 1)) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety() & ~(normalbigbox2.getface() = 1))){
+									do smallbox.movedown();
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety()) &
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety())){
+								do bigbox.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety()) &
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety())){
+								do normalbigbox1.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 3)){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety())&
+							~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety()) &
+							~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety())){
+								do normalbigbox2.movedown();
+								do dot.movedown();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() = smallbox.getx() & dot.gety() + 50 = smallbox.gety() & ~(smallbox.getface() = 1)) & 
+							~(dot.getx() = bigbox.getx() & dot.gety() + 50 = bigbox.gety() & ~(bigbox.getface() = 1)) & ~(dot.getx() = normalbigbox1.getx() & dot.gety() + 50 = normalbigbox1.gety() & ~(normalbigbox1.getface() = 1)) & 
+							~(dot.getx() = normalbigbox2.getx() & dot.gety() + 50 = normalbigbox2.gety() & ~(normalbigbox2.getface() = 1))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 3)) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 3)) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 3))){
+									do dot.movedown();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 132){
+				if(dot.getx() < 365){
+					if((dot.getx() = smallbox.getx()) & (dot.gety() = smallbox.gety())){
+						if((dot.getx() = normalbigbox1.getx()) & (dot.gety() = normalbigbox1.gety())){
+							if(~(normalbigbox1.getface() = 2)){
+								if(~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety()) & 
+								~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+									do dot.moveright();
+									do smallbox.moveright();
+									do normalbigbox1.moveright();
+									let move = 1;
+								}
+							}
+						}
+						if((dot.getx() = normalbigbox2.getx()) & (dot.gety() = normalbigbox2.gety())){
+							if(~(normalbigbox2.getface() = 2)){
+								if(~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety()) & 
+								~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())){
+									do dot.moveright();
+									do smallbox.moveright();
+									do normalbigbox2.moveright();
+									let move = 1;
+								}
+							}
+						}
+						if(move = 0){
+							if(~(smallbox.getface() = 2)){
+								if(~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) & 
+								~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 4)) &
+								~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 4))){
+									do smallbox.moveright();
+									do dot.moveright();
+									let move = 1;
+								}
+							}
+						}
+					}
+					if(move = 0){
+						if(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety()) &
+							~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+								do bigbox.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+							~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety())){
+								do normalbigbox1.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 2)){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety())&
+							~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety()) &
+							~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety())){
+								do normalbigbox2.moveright();
+								do dot.moveright();
+								let move = 1;
+							}
+						}
+						if(move = 0){
+							if(~(dot.getx() + 50 = smallbox.getx() & dot.gety() = smallbox.gety() & ~(smallbox.getface() = 4)) & 
+							~(dot.getx() + 50 = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 4)) & ~(dot.getx() + 50 = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 4)) &
+							~(dot.getx() + 50 = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 4))){
+								if(~(dot.getx() = bigbox.getx() & dot.gety() = bigbox.gety() & ~(bigbox.getface() = 2)) &
+								~(dot.getx() = normalbigbox1.getx() & dot.gety() = normalbigbox1.gety() & ~(normalbigbox1.getface() = 2)) &
+								~(dot.getx() = normalbigbox2.getx() & dot.gety() = normalbigbox2.gety() & ~(normalbigbox2.getface() = 2))){
+									do dot.moveright();
+									let move = 1;
+								}
+							}
+						}
+					}
+				}
+			}
+			if(keyb = 81){
+				let quit = 1;
+			}
+			while(~(keyb = 0)){
+				let keyb = Keyboard.keyPressed();
+			}
+			//complete
+			if(bigbox.getx() = smallbox.getx()){
+				if(bigbox.gety() = smallbox.gety()){
+					let goal = 1;
+					do Output.printInt(goal);
+				}
+			}
+		}
+		do Screen.clearScreen();
+		do Output.moveCursor(11, 27);
+		if(goal = 1){
+			do Output.printString("Complete!");
+		}
+		if(quit = 1){
+			do Output.printString("Failed QQ");
+		}
+		do bigbox.dispose();
+		do smallbox.dispose();
+		do normalbigbox1.dispose();
+		do normalbigbox2.dispose();
+		do dot.dispose();
+		return;
+	}
+
+	method void dispose(){
+		do Memory.deAlloc(this);
+    	return;
+	}
+}

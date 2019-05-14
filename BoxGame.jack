@@ -1,0 +1,104 @@
+class BoxGame{
+	field Level level;
+
+	constructor BoxGame new(){
+		let level = 0;
+		return this;
+	}
+
+	method void run(){
+		var char key;
+		var int quit;
+		let quit = 0;
+		while(quit = 0){
+			do Output.moveCursor(0, 0);
+			do Output.printString("1~5:CHOOSE LEVEL");
+			do Output.moveCursor(1, 0);
+			do Output.printString("Q:QUIT");
+			do Output.moveCursor(11, 22);
+			do Output.printString("Choose level 1~5");
+
+			while(~(key = 0)){
+				let key = Keyboard.keyPressed();
+				//do Output.printInt(key);
+			}
+
+			while(key = 0){
+				let key = Keyboard.keyPressed();
+				//do Output.printInt(key);
+			}
+			if(key = 49){
+				do Screen.clearScreen();
+				do Output.moveCursor(11, 27);
+				do Output.printString("level 1");
+				let level = Level.new(1);
+				while(~(key = 128)){
+					let key = Keyboard.keyPressed();
+					//do Output.printInt(key);
+				}
+				do level.run1();
+			}
+			if(key = 50){
+				do Screen.clearScreen();
+				do Output.moveCursor(11, 27);
+				do Output.printString("level 2");
+				let level = Level.new(2);
+				while(~(key = 128)){
+					let key = Keyboard.keyPressed();
+					//do Output.printInt(key);
+				}
+				do level.run2();
+			}
+			if(key = 51){
+				do Screen.clearScreen();
+				do Output.moveCursor(11, 27);
+				do Output.printString("level 3");
+				let level = Level.new(3);
+				while(~(key = 128)){
+					let key = Keyboard.keyPressed();
+					//do Output.printInt(key);
+				}
+				do level.run3();
+			}
+			if(key = 52){
+				do Screen.clearScreen();
+				do Output.moveCursor(11, 27);
+				do Output.printString("level 4");
+				let level = Level.new(4);
+				while(~(key = 128)){
+					let key = Keyboard.keyPressed();
+					//do Output.printInt(key);
+				}
+				do level.run4();
+			}
+			if(key = 53){
+				do Screen.clearScreen();
+				do Output.moveCursor(11, 27);
+				do Output.printString("level 5");
+				let level = Level.new(5);
+				while(~(key = 128)){
+					let key = Keyboard.keyPressed();
+					//do Output.printInt(key);
+				}
+				do level.run5();
+			}
+			if(key = 81){
+				let quit = 1;
+			}
+			while(~(key = 81) & ~(key = 0)){
+				let key = Keyboard.keyPressed();
+				//do Output.printInt(key);
+			}
+			while(~(key = 81) & ~(key = 128)){
+				let key = Keyboard.keyPressed();
+			}
+		}
+		do level.dispose();
+		return;
+	}
+
+	method void dispose(){
+		do Memory.deAlloc(this);
+    	return;
+	}
+}

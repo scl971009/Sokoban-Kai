@@ -1,0 +1,97 @@
+class NormalBigBox{
+	field int facing;
+	field int transx;
+	field int transy;
+
+	constructor NormalBigBox new(int x, int y, int face){
+		let facing = face;
+		let transx = x;
+		let transy = y;
+		do draw();
+		return this;
+	}
+
+	method void draw(){
+		if(facing = 1){
+			do Screen.drawLine(transx + 20, transy + 20, transx + 20, transy - 20);
+			do Screen.drawLine(transx + 20, transy + 20, transx - 20, transy + 20);
+			do Screen.drawLine(transx - 20, transy - 20, transx - 20, transy + 20);
+		}
+		if(facing = 2){
+			do Screen.drawLine(transx - 20, transy - 20, transx + 20, transy - 20);
+			do Screen.drawLine(transx + 20, transy + 20, transx - 20, transy + 20);
+			do Screen.drawLine(transx - 20, transy - 20, transx - 20, transy + 20);
+		}
+		if(facing = 3){
+			do Screen.drawLine(transx - 20, transy - 20, transx + 20, transy - 20);
+			do Screen.drawLine(transx + 20, transy + 20, transx + 20, transy - 20);
+			do Screen.drawLine(transx - 20, transy - 20, transx - 20, transy + 20);
+		}
+		if(facing = 4){
+			do Screen.drawLine(transx - 20, transy - 20, transx + 20, transy - 20);
+			do Screen.drawLine(transx + 20, transy + 20, transx + 20, transy - 20);
+			do Screen.drawLine(transx + 20, transy + 20, transx - 20, transy + 20);
+		}
+		return;
+	}
+
+	method int getx(){
+		return transx;
+	}
+
+	method int gety(){
+		return transy;
+	}
+
+	method int getface(){
+		return facing;
+	}
+
+	method void movedown(){
+		do Screen.setColor(false);
+		do draw();
+		let transy = transy + 50;
+		//do Output.printInt(transy);
+		do Screen.setColor(true);
+		do draw();
+		return;
+	}
+
+	method void moveup(){
+		do Screen.setColor(false);
+		do draw();
+		let transy = transy - 50;
+		//do Output.printInt(transy);
+		do Screen.setColor(true);
+		do draw();
+		return;
+	}
+
+	method void moveright(){
+		do Screen.setColor(false);
+		do draw();
+		let transx = transx + 50;
+		//do Output.printInt(transy);
+		do Screen.setColor(true);
+		do draw();
+		return;
+	}
+
+	method void moveleft(){
+		do Screen.setColor(false);
+		do draw();
+		let transx = transx - 50;
+		//do Output.printInt(transy);
+		do Screen.setColor(true);
+		do draw();
+		return;
+	}
+
+	method void dispose(){
+		do Screen.setColor(false);
+		do draw();
+		do Memory.deAlloc(this);
+		do Screen.setColor(true);
+    	return;
+	}
+}
